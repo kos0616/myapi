@@ -1,0 +1,7 @@
+name = "chatter"
+main = "src/worker.js"
+workers_dev = true
+compatibility_date = "2025-05-05"
+
+[observability]
+enabled = true
