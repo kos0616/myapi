@@ -5,3 +5,7 @@ compatibility_date = "2025-05-05"
 
 [observability]
 enabled = true
+
+[[kv_namespaces]]
+id = "cac90715e1a244bcb56439ccf96014f4"
+binding = "DB"
