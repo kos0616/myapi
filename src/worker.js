@@ -83,10 +83,10 @@ const handleDelete = async (request, env, id) => {
 
 const handleGetAIResponse = async (request, env) => {
 	const response = await fetch('https://api.xygeng.cn/one').then((res) => res.json());
-	const content = response.data?.content || '取得詞句時發生了意外的錯誤';
+	const message = response.data?.message || '取得詞句時發生了意外的錯誤';
 
 	const data = await getDataFromDB(env, 'chatHistory');
-	data.push({ id: data.length + 1, type: 'response', update: new Date(), content });
+	data.push({ id: data.length + 1, type: 'response', update: new Date(), message });
 	await saveDataToDB(env, 'chatHistory', data);
 
 	// 隨機延遲 1 到 3 秒
@@ -98,8 +98,8 @@ const handleGetAIResponse = async (request, env) => {
 const handleChatPost = async (request, env) => {
 	const data = await getDataFromDB(env, 'chatHistory');
 
-	// payload default type { type: 'request', content: string | undefined }
-	const payload = { id: data.length + 1, type: 'request', update: new Date(), content: undefined };
+	// payload default type { type: 'request', message: string | undefined }
+	const payload = { id: data.length + 1, type: 'request', update: new Date(), message: undefined };
 	try {
 		const req = await request.json();
 		payload = { ...payload, ...req };
