@@ -16,13 +16,16 @@ var worker_default = {
 
 var handleGet = async (request, env, id) => {
 	const dataStr = await env.DB.get('chatHistory');
-	console.log(dataStr);
 
 	let data = [];
 	if (dataStr === null) {
 		data = [];
 	} else {
-		data = JSON.parse(dataStr);
+		try {
+			data = JSON.parse(dataStr);
+		} catch (error) {
+			data = [];
+		}
 	}
 	if (id) {
 		const index = data.findIndex((chat) => chat['id'] === parseInt(id));
@@ -41,7 +44,11 @@ var handlePut = async (request, env, id) => {
 	if (dataStr === null) {
 		data = [];
 	} else {
-		data = JSON.parse(dataStr);
+		try {
+			data = JSON.parse(dataStr);
+		} catch (error) {
+			data = [];
+		}
 	}
 	if (id) {
 		const index = data.findIndex((chat) => chat['id'] === parseInt(id));
@@ -62,7 +69,11 @@ var handleDelete = async (request, env, id) => {
 	if (dataStr === null) {
 		data = [];
 	} else {
-		data = JSON.parse(dataStr);
+		try {
+			data = JSON.parse(dataStr);
+		} catch (error) {
+			data = [];
+		}
 	}
 	if (id) {
 		const index = data.findIndex((chat) => chat['id'] === parseInt(id));
@@ -77,11 +88,65 @@ var handleDelete = async (request, env, id) => {
 	}
 };
 
+var handlePost = async (request, env) => {
+	let payload = undefined;
+	try {
+		payload = await request.json();
+	} catch (error) {
+		payload = undefined;
+	}
+	const dataStr = await env.DB.get('chatHistory');
+	let data;
+	if (dataStr === null) {
+		data = [];
+	} else {
+		try {
+			data = JSON.parse(dataStr);
+		} catch (error) {
+			data = [];
+		}
+	}
+
+	if (payload) data.push(payload);
+	await env.DB.put('chatHistory', JSON.stringify(data));
+	return new Response(JSON.stringify(payload), { status: 201 });
+};
+
+var handleGetAIResponse = async (request, env) => {
+	const response = await fetch('https://api.xygeng.cn/one').then((res) => res.json());
+	const content = response.data?.content;
+
+	const dataStr = await env.DB.get('chatHistory');
+	let data;
+	if (dataStr === null) {
+		data = [];
+	} else {
+		try {
+			data = JSON.parse(dataStr);
+		} catch (error) {
+			data = [];
+		}
+	}
+	if (content) {
+		data.push({ id: data.length + 1, type: 'response', update: new Date(), content });
+	} else {
+		data.push({ id: data.length + 1, type: 'response', update: new Date(), content: '取得詞句時發生了意外的錯誤' });
+	}
+	await env.DB.put('chatHistory', JSON.stringify(data));
+	// await deplay random time from 1 to 3 seconds
+	await new Promise((resolve) => setTimeout(resolve, Math.floor(Math.random() * 2000) + 1000));
+	return new Response(JSON.stringify(data), { status: 200 });
+};
+
 async function handleRequest(request, env) {
 	const { method, url } = request;
 	const { searchParams } = new URL(url);
 	const id = searchParams.get('id');
-	console.log(method, url, id);
+
+  /** 取得 AI 的回應 */
+	if (url.includes('/api/ai')) {
+		return await handleGetAIResponse(request, env);
+	}
 
 	switch (method) {
 		case 'GET':
