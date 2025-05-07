@@ -7,6 +7,7 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
+import handleGetNews from './news.js';
 
 const headers = { 'Access-Control-Allow-Origin': '*' };
 
@@ -84,8 +85,8 @@ const handleDelete = async (request, env, id) => {
 };
 
 const handleGetAIResponse = async (request, env) => {
-	const response = await fetch('https://api.xygeng.cn/one').then((res) => res.json()).data;
-	const message = `${response?.content} - ${response?.origin}` || '取得詞句時發生了意外的錯誤';
+	const response = await fetch('https://api.xygeng.cn/one').then((res) => res.json());
+	const message = `${response.data?.content} - ${response.data?.origin}` || '取得詞句時發生了意外的錯誤';
 
 	const data = await getDataFromDB(env, 'chatHistory');
 	data.push({ id: data.length + 1, type: 'response', update: new Date(), message });
@@ -146,6 +147,9 @@ async function handleRequest(request, env) {
 	if (pathname.includes('/api/chat') && method === 'POST') {
 		// 處理聊天請求
 		return await handleChatPost(request, env);
+	}
+	if (pathname === '/api/news' && method === 'GET') {
+		return await handleGetNews(request, env);
 	}
 
 	switch (method) {
