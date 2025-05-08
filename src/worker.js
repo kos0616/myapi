@@ -148,6 +148,11 @@ async function handleRequest(request, env) {
 		// 處理聊天請求
 		return await handleChatPost(request, env);
 	}
+	if (pathname.includes('/api/chat') && method === 'GET') {
+		// 取得聊天歷史
+		return await handleGet(request, env, id);
+	}
+
 	if (pathname === '/api/news' && method === 'GET') {
 		return await handleGetNews(request, env);
 	}
