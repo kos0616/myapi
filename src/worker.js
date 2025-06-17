@@ -12,6 +12,7 @@ import { handleGetAIResponse } from './AI.js';
 import handleUser from './user.js';
 import handleChat from './chat.js';
 import handleApiResource from './apiResource.js';
+import handleIdentity from './identity.js';
 
 // 處理 OPTIONS 預檢請求
 function handlePreRequest() {
@@ -46,16 +47,8 @@ async function handleRequest(request, env) {
 	/** 取得user清單 */
 	if (pathname === '/api/user') return await handleUser(request, env);
 
-	if (pathname === '/api/identity/logout' && method === 'POST') {
-		// 處理登出請求
-		return new Response('Logout successful', {
-			status: 200,
-			headers: {
-				'Access-Control-Allow-Origin': '*',
-				'Content-Type': 'application/json',
-			},
-		});
-	}
+	// 處理身份驗證相關請求
+	if (pathname.startsWith('/api/identity')) return await handleIdentity(request, env);
 
 	/** 自由編輯表單 */
 	if (pathname.startsWith('/api/')) {
