@@ -57,8 +57,8 @@ async function handleRequest(request, env) {
 		return await handleApiResource(request, env, apiResource);
 
 		function extractApiResource(pathname) {
-			// 只匹配 /api/xxx，不包含後續路徑
-			const match = pathname.match(/^\/api\/([^\/\?]+)$/);
+			// 匹配 /api/xxx 或 /api/xxx/others
+			const match = pathname.match(/^\/api\/([^\/\?]+)(?:\/|$)/);
 			return match ? match[1] : null;
 		}
 	}
