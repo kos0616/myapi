@@ -4,7 +4,7 @@ export function formatArrayResponse(arr) {
 		message: 'Array Data retrieved successfully',
 		data: arr,
 		page: 1,
-		pageSize: 1,
+		pageSize: 100,
 		total: arr.length,
 	};
 }
