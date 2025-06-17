@@ -11,6 +11,7 @@ export default async function handleIdentity(request, env) {
 	if (pathname === '/api/identity/me' && method === 'GET') return await handleGetMe();
 
 	if (pathname === '/api/identity/logout' && method === 'POST') return await handleLogout();
+	if (pathname === '/api/identity/login' && method === 'POST') return await handleLogin();
 }
 
 // 處理獲取當前用戶信息的請求
@@ -62,6 +63,16 @@ async function handleGetMe() {
 async function handleLogout() {
 	// 處理登出請求
 	return new Response('Logout successful', {
+		status: 200,
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'Content-Type': 'application/json',
+		},
+	});
+}
+
+async function handleLogin() {
+	return new Response('Login successful', {
 		status: 200,
 		headers: {
 			'Access-Control-Allow-Origin': '*',
