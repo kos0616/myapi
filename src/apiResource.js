@@ -1,3 +1,4 @@
+import { formatArrayResponse, formatResponse } from './lib/formatResponse.js';
 import { getDataFromDB, saveDataToDB } from './lib/setData.js';
 const headers = { 'Access-Control-Allow-Origin': '*' };
 
@@ -27,9 +28,9 @@ async function handleGet(request, env, id, KEY) {
 	if (id) {
 		const item = data.find((obj) => obj.id === parseInt(id));
 		if (!item) return new Response('Not Found', { status: 404, headers });
-		return new Response(JSON.stringify(item), { status: 200, headers });
+		return new Response(JSON.stringify(formatResponse(item)), { status: 200, headers });
 	}
-	return new Response(JSON.stringify(data), { status: 200, headers });
+	return new Response(JSON.stringify(formatArrayResponse(data)), { status: 200, headers });
 }
 
 async function handlePost(request, env, KEY) {
@@ -46,7 +47,7 @@ async function handlePost(request, env, KEY) {
 	data.push(payload);
 	await saveDataToDB(env, KEY, data);
 
-	return new Response(JSON.stringify(payload), { status: 201, headers });
+	return new Response(JSON.stringify(formatResponse(payload)), { status: 201, headers });
 }
 
 async function handlePut(request, env, id, KEY) {
@@ -66,7 +67,7 @@ async function handlePut(request, env, id, KEY) {
 	data[index] = payload;
 	await saveDataToDB(env, KEY, data);
 
-	return new Response(JSON.stringify(payload), { status: 200, headers });
+	return new Response(JSON.stringify(formatResponse(payload)), { status: 200, headers });
 }
 
 async function handleDelete(request, env, id, KEY) {
@@ -79,5 +80,5 @@ async function handleDelete(request, env, id, KEY) {
 	const removed = data.splice(index, 1);
 	await saveDataToDB(env, KEY, data);
 
-	return new Response(JSON.stringify(removed), { status: 200, headers });
+	return new Response(JSON.stringify(formatResponse(removed)), { status: 200, headers });
 }

@@ -9,7 +9,7 @@
  */
 import handleGetNews from './news.js';
 import { handleGetAIResponse } from './AI.js';
-import handleUser from './user.js';
+// import handleUser from './user.js';
 import handleChat from './chat.js';
 import handleApiResource from './apiResource.js';
 import handleIdentity from './identity.js';
@@ -45,7 +45,7 @@ async function handleRequest(request, env) {
 	/** 取得即時新聞 */
 	if (pathname === '/api/news' && method === 'GET') return await handleGetNews(request, env);
 	/** 取得user清單 */
-	if (pathname === '/api/user') return await handleUser(request, env);
+	// if (pathname === '/api/user') return await handleUser(request, env);
 
 	// 處理身份驗證相關請求
 	if (pathname.startsWith('/api/identity')) return await handleIdentity(request, env);
