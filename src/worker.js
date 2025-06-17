@@ -46,6 +46,17 @@ async function handleRequest(request, env) {
 	/** 取得user清單 */
 	if (pathname === '/api/user') return await handleUser(request, env);
 
+	if (pathname === '/api/identity/logout' && method === 'POST') {
+		// 處理登出請求
+		return new Response('Logout successful', {
+			status: 200,
+			headers: {
+				'Access-Control-Allow-Origin': '*',
+				'Content-Type': 'application/json',
+			},
+		});
+	}
+
 	/** 自由編輯表單 */
 	if (pathname.startsWith('/api/')) {
 		const apiResource = extractApiResource(pathname);
