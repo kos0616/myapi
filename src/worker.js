@@ -13,19 +13,13 @@ import { handleGetAIResponse } from './AI.js';
 import handleChat from './chat.js';
 import handleApiResource from './apiResource.js';
 import handleIdentity from './identity.js';
+import handleCORSHeaders from './lib/handleCORSHeaders.js';
 
 // 處理 OPTIONS 預檢請求
-function handlePreRequest() {
-	// 設置允許的來源
-	const allowedOrigin = '*'; // 或者指定特定的來源，例如 "https://your-frontend-domain.com"
-
+function handlePreRequest(request) {
 	return new Response(null, {
 		status: 204,
-		headers: {
-			'Access-Control-Allow-Origin': allowedOrigin,
-			'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-			'Access-Control-Allow-Headers': 'Content-Type',
-		},
+		headers: handleCORSHeaders(request),
 	});
 }
 

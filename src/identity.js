@@ -1,4 +1,4 @@
-const headers = { 'Access-Control-Allow-Origin': '*' };
+import handleCORSHeaders from './lib/handleCORSHeaders.js';
 
 export default async function handleIdentity(request, env) {
 	const { method, url } = request;
@@ -8,14 +8,14 @@ export default async function handleIdentity(request, env) {
 	const id = searchParams.get('id');
 
 	// /api/identity/me
-	if (pathname === '/api/identity/me' && method === 'GET') return await handleGetMe();
+	if (pathname === '/api/identity/me' && method === 'GET') return await handleGetMe(request);
 
-	if (pathname === '/api/identity/logout' && method === 'POST') return await handleLogout();
-	if (pathname === '/api/identity/login' && method === 'POST') return await handleLogin();
+	if (pathname === '/api/identity/logout' && method === 'POST') return await handleLogout(request);
+	if (pathname === '/api/identity/login' && method === 'POST') return await handleLogin(request);
 }
 
 // 處理獲取當前用戶信息的請求
-async function handleGetMe() {
+async function handleGetMe(request) {
 	const data = {
 		permissions: [
 			{
@@ -57,25 +57,25 @@ async function handleGetMe() {
 		roles: ['admin'],
 		lockout: null,
 	};
-	return new Response(JSON.stringify(data), { status: 200, headers });
+	return new Response(JSON.stringify(data), { status: 200, headers: handleCORSHeaders(request) });
 }
 
-async function handleLogout() {
+async function handleLogout(request) {
 	// 處理登出請求
 	return new Response('Logout successful', {
 		status: 200,
 		headers: {
-			'Access-Control-Allow-Origin': '*',
+			...handleCORSHeaders(request),
 			'Content-Type': 'application/json',
 		},
 	});
 }
 
-async function handleLogin() {
+async function handleLogin(request) {
 	return new Response('Login successful', {
 		status: 200,
 		headers: {
-			'Access-Control-Allow-Origin': '*',
+			...handleCORSHeaders(request),
 			'Content-Type': 'application/json',
 		},
 	});
