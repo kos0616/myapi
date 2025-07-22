@@ -6,8 +6,8 @@ import dayjs from 'dayjs';
 export default function handleChart(request) {
 	const { url } = request;
 	const { searchParams } = new URL(url);
-	const startDate = searchParams.get('date') || dayjs(); // 預設為今天
-	const date = dayjs(startDate).format('YYYY-MM-DD');
+	const startDate = searchParams.get('date') ? dayjs(searchParams.get('date')) : dayjs(); // 預設為今天
+	const date = startDate.format('YYYY-MM-DD');
 
 	const ids = ['01', '02', '03', '04', '05']; // IDs to choose from
 	const generateId = () => Number(`${Date.now()}${Math.floor(Math.random() * 10000)}`);
