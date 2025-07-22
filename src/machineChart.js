@@ -1,3 +1,4 @@
+import handleCORSHeaders from './lib/handleCORSHeaders.js';
 import dayjs from 'dayjs';
 /**
  * 數據趨勢圖測試資料
@@ -30,5 +31,5 @@ export default function handleChart(request) {
 		});
 	}
 
-	return data;
+	return new Response(JSON.stringify(data), { status: 200, headers: handleCORSHeaders(request) });
 }
