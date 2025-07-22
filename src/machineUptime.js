@@ -7,7 +7,7 @@ export default function handleChart(request) {
 	const { url } = request;
 	const { searchParams } = new URL(url);
 	const str = searchParams.get('date');
-	const startDate = !!str && str !== 'undefined' ? dayjs() : dayjs(str); // 預設為今天
+	const startDate = dayjs(str).isValid() ? dayjs(str) : dayjs(); // 如果無效，預設為今天
 	const date = startDate.format('YYYY-MM-DD');
 
 	const ids = ['01', '02', '03', '04', '05']; // IDs to choose from
