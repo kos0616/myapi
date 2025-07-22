@@ -58,8 +58,8 @@ export default function handleChart(request) {
 	const result = ids
 		.map((id) => {
 			const arr = [...basicSchedule, ...generateRandomTime()].sort((a, b) => {
-				const timeA = dayjs(`${date} ${a.time}`, 'YYYY-MM-DD HH:mm');
-				const timeB = dayjs(`${date} ${b.time}`, 'YYYY-MM-DD HH:mm');
+				const timeA = dayjs(a.time, 'YYYY-MM-DD HH:mm');
+				const timeB = dayjs(b.time, 'YYYY-MM-DD HH:mm');
 				return timeA - timeB;
 			});
 
@@ -84,16 +84,16 @@ function generateRandomTime() {
 		.map(() => {
 			const randomStopDurationGenerator = Math.floor(Math.random() * 20) + 10; // 停機時間 10 ~ 30 分鐘
 			const randomStopStart = Math.floor(Math.random() * 24 * 6) * 10; // 隨機停機開始時間，單位為10分鐘
-			const startTime = dayjs().startOf('day').add(randomStopStart, 'minute');
+			const startTime = dayjs(date).startOf('day').add(randomStopStart, 'minute');
 			const endTime = startTime.add(randomStopDurationGenerator, 'minute');
 
 			return [
 				{
-					time: startTime.format('HH:mm'),
+					time: startTime.format('YYYY:MM:DD HH:mm'),
 					value: 'stop',
 				},
 				{
-					time: endTime.format('HH:mm'),
+					time: endTime.format('YYYY:MM:DD HH:mm'),
 					value: 'stop',
 				},
 			];
