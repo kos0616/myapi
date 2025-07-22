@@ -5,6 +5,7 @@ export default function getCORSHeaders(request) {
 		// 電池交換系統	'https://cycling-battery.pages.dev',
 		'http://ju-tai.vdr.tw', // 久泰精業
 		'http://localhost', // 本地測試
+		'http://localhost:5173', // 本地測試
 	];
 
 	const allowedOrigin = allowedOrigins.includes(origin) ? origin : null;
