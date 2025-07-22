@@ -76,28 +76,28 @@ export default function handleChart(request) {
 		.flat();
 
 	return new Response(JSON.stringify(result), { status: 200, headers: handleCORSHeaders(request) });
-}
 
-function generateRandomTime() {
-	const randomStopCounts = Math.floor(Math.random() * 3);
+	function generateRandomTime() {
+		const randomStopCounts = Math.floor(Math.random() * 3);
 
-	return Array.from({ length: randomStopCounts })
-		.map(() => {
-			const randomStopDurationGenerator = Math.floor(Math.random() * 20) + 10; // 停機時間 10 ~ 30 分鐘
-			const randomStopStart = Math.floor(Math.random() * 24 * 6) * 10; // 隨機停機開始時間，單位為10分鐘
-			const startTime = dayjs(date).startOf('day').add(randomStopStart, 'minute');
-			const endTime = startTime.add(randomStopDurationGenerator, 'minute');
+		return Array.from({ length: randomStopCounts })
+			.map(() => {
+				const randomStopDurationGenerator = Math.floor(Math.random() * 20) + 10; // 停機時間 10 ~ 30 分鐘
+				const randomStopStart = Math.floor(Math.random() * 24 * 6) * 10; // 隨機停機開始時間，單位為10分鐘
+				const startTime = dayjs(date).startOf('day').add(randomStopStart, 'minute');
+				const endTime = startTime.add(randomStopDurationGenerator, 'minute');
 
-			return [
-				{
-					time: startTime.format('YYYY:MM:DD HH:mm'),
-					value: 'stop',
-				},
-				{
-					time: endTime.format('YYYY:MM:DD HH:mm'),
-					value: 'stop',
-				},
-			];
-		})
-		.flat();
+				return [
+					{
+						time: startTime.format('YYYY:MM:DD HH:mm'),
+						value: 'stop',
+					},
+					{
+						time: endTime.format('YYYY:MM:DD HH:mm'),
+						value: 'stop',
+					},
+				];
+			})
+			.flat();
+	}
 }
