@@ -14,6 +14,7 @@ import handleChat from './chat.js';
 import handleApiResource from './apiResource.js';
 import handleIdentity from './identity.js';
 import handleCORSHeaders from './lib/handleCORSHeaders.js';
+import handleChart from './machineChart.js';
 
 // 處理 OPTIONS 預檢請求
 function handlePreRequest(request) {
@@ -38,6 +39,9 @@ async function handleRequest(request, env) {
 	if (pathname === '/api/chat') return await handleChat(request, env);
 	/** 取得即時新聞 */
 	if (pathname === '/api/news' && method === 'GET') return await handleGetNews(request, env);
+	/** 取得假資料 數據趨勢圖 */
+	if (pathname === '/api/chart' && method === 'GET') return handleChart(request);
+
 	/** 取得user清單 */
 	// if (pathname === '/api/user') return await handleUser(request, env);
 

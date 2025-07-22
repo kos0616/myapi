@@ -1,7 +1,12 @@
 export default function getCORSHeaders(request) {
 	const origin = request.headers.get('Origin');
 	// 只允許你的前端網域
-	const allowedOrigins = ['https://cycling-battery.pages.dev', 'http://localhost'];
+	const allowedOrigins = [
+		// 電池交換系統	'https://cycling-battery.pages.dev',
+		'http://ju-tai.vdr.tw', // 久泰精業
+		'http://localhost', // 本地測試
+	];
+
 	const allowedOrigin = allowedOrigins.includes(origin) ? origin : null;
 	if (!allowedOrigin) {
 		return {};
