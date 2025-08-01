@@ -28,14 +28,6 @@ export default function handleChart(request) {
 		},
 		{
 			time: date + ' 08:00',
-			value: 'working',
-		},
-		{
-			time: date + ' 08:00',
-			value: 'maintain',
-		},
-		{
-			time: date + ' 08:30',
 			value: 'maintain',
 		},
 		{
@@ -48,10 +40,6 @@ export default function handleChart(request) {
 		},
 		{
 			time: date + ' 13:00',
-			value: 'standby',
-		},
-		{
-			time: date + ' 24:00',
 			value: 'working',
 		},
 	];
@@ -94,7 +82,7 @@ export default function handleChart(request) {
 					},
 					{
 						time: endTime.format('YYYY:MM:DD HH:mm'),
-						value: 'stop',
+						value: 'working',
 					},
 				];
 			})
