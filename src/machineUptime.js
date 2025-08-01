@@ -77,11 +77,11 @@ export default function handleChart(request) {
 
 				return [
 					{
-						time: startTime.format('YYYY:MM:DD HH:mm'),
+						time: startTime.format('YYYY-MM-DD HH:mm'),
 						value: 'stop',
 					},
 					{
-						time: endTime.format('YYYY:MM:DD HH:mm'),
+						time: endTime.format('YYYY-MM-DD HH:mm'),
 						value: 'working',
 					},
 				];
