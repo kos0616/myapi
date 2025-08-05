@@ -74,6 +74,7 @@ export default function handleChart(request) {
 				const randomStopStart = Math.floor(Math.random() * 24 * 6) * 10; // 隨機停機開始時間，單位為10分鐘
 				const startTime = dayjs(date).startOf('day').add(randomStopStart, 'minute');
 				const endTime = startTime.add(randomStopDurationGenerator, 'minute');
+				const lastEnd = dayjs(date).endOf('day');
 
 				return [
 					{
@@ -81,7 +82,7 @@ export default function handleChart(request) {
 						value: 'stop',
 					},
 					{
-						time: endTime.format('YYYY-MM-DD HH:mm'),
+						time: endTime.isAfter(lastEnd) ? lastEnd.format('YYYY-MM-DD HH:mm') : endTime.format('YYYY-MM-DD HH:mm'),
 						value: 'working',
 					},
 				];
