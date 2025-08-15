@@ -1,5 +1,5 @@
-import handleCORSHeaders from './lib/handleCORSHeaders.js';
 import dayjs from 'dayjs';
+
 /**
  * 數據趨勢圖測試資料
  */
@@ -31,5 +31,12 @@ export default function handleChart(request) {
 		});
 	}
 
-	return new Response(JSON.stringify(data), { status: 200, headers: handleCORSHeaders(request) });
+	return new Response(JSON.stringify(data), {
+		status: 200,
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Methods': 'GET',
+			'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+		},
+	});
 }
