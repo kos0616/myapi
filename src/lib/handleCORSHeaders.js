@@ -6,6 +6,7 @@ export default function getCORSHeaders(request) {
 		'http://ju-tai.vdr.tw', // 久泰精業
 		'http://localhost', // 本地測試
 		'http://localhost:5173', // 本地測試
+		'http://192.168.0.11',
 	];
 
 	const allowedOrigin = allowedOrigins.includes(origin) ? origin : null;
