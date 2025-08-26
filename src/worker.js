@@ -58,9 +58,14 @@ async function handleRequest(request, env) {
 		return await handleMirfakApiResource(request, env, apiResource);
 
 		function extractApiResource(pathname) {
-			// 匹配 /mirfakapi/xxx 或 /mirfakapi/xxx/others
-			const match = pathname.match(/^\/mirfakapi\/([^\/\?]+)(?:\/|$)/);
-			return match ? match[1] : null;
+			// 匹配 /mirfakapi/xxx/yyy 格式，將其組合為 xxx-yyy
+			const match = pathname.match(/^\/mirfakapi\/([^\/\?]+)\/([^\/\?]+)(?:\/|$)/);
+			if (match && match[2]) {
+				return `${match[1]}-${match[2]}`; // 例如: onlineRegistration-courseCategory
+			}
+			// 如果只有一個路徑段，就返回原本的邏輯
+			const singleMatch = pathname.match(/^\/mirfakapi\/([^\/\?]+)(?:\/|$)/);
+			return singleMatch ? singleMatch[1] : null;
 		}
 	}
 

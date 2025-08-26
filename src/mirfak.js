@@ -1,13 +1,14 @@
 import { formatMirfakArrayResponse, formatMirfakResponse } from './lib/formatResponse.js';
 import { getDataFromDB, saveDataToDB } from './lib/setData.js';
 import handleCORSHeaders from './lib/handleCORSHeaders.js';
-import mirfakPreformater from './lib/mirfakPreformater.js';
+import { mirfakPreformater, extractIdPrefix } from './lib/mirfakLib.js';
 
 /** 自由表單設定, 麥爾法版 */
 export default async function handleUser(request, env, KEY) {
 	const { method, url } = request;
 	const { pathname } = new URL(url);
 	const id_name = mirfakPreformater(pathname);
+	const prefix = extractIdPrefix(id_name) || 'cp13_xx_';
 
 	switch (method) {
 		case 'GET':
@@ -48,6 +49,8 @@ export default async function handleUser(request, env, KEY) {
 			}
 			// 產生隨機 UUID 作為 id
 			payload[id_name] = crypto.randomUUID();
+			payload[prefix + 'created_at'] = Math.floor(Date.now() / 1000); // Unix timestamp
+			payload[prefix + 'updated_at'] = Math.floor(Date.now() / 1000); // Unix timestamp
 		} catch {
 			return new Response('Invalid FormData', { status: 400, headers: handleCORSHeaders(request) });
 		}
@@ -69,7 +72,7 @@ export default async function handleUser(request, env, KEY) {
 				payload[key] = value;
 			}
 			const id = payload[id_name];
-
+			payload[prefix + 'updated_at'] = Math.floor(Date.now() / 1000); // Unix timestamp
 			if (!id) return new Response('Missing ID parameter', { status: 400, headers: handleCORSHeaders(request) });
 		} catch {
 			return new Response('Invalid JSON', { status: 400, headers: handleCORSHeaders(request) });
