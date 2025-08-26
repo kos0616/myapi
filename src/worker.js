@@ -12,6 +12,7 @@ import { handleGetAIResponse } from './AI.js';
 // import handleUser from './user.js';
 import handleChat from './chat.js';
 import handleApiResource from './apiResource.js';
+import handleMirfakApiResource from './mirfak.js';
 import handleIdentity from './identity.js';
 import handleCORSHeaders from './lib/handleCORSHeaders.js';
 import handleChart from './machineChart.js';
@@ -49,6 +50,19 @@ async function handleRequest(request, env) {
 
 	// 處理身份驗證相關請求
 	if (pathname.startsWith('/api/identity')) return await handleIdentity(request, env);
+
+	/** 自由編輯表單- 麥爾法 */
+	if (pathname.startsWith('/mirfakapi/')) {
+		const apiResource = extractApiResource(pathname);
+
+		return await handleMirfakApiResource(request, env, apiResource);
+
+		function extractApiResource(pathname) {
+			// 匹配 /mirfakapi/xxx 或 /mirfakapi/xxx/others
+			const match = pathname.match(/^\/mirfakapi\/([^\/\?]+)(?:\/|$)/);
+			return match ? match[1] : null;
+		}
+	}
 
 	/** 自由編輯表單 */
 	if (pathname.startsWith('/api/')) {

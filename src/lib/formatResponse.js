@@ -16,3 +16,27 @@ export function formatResponse(data) {
 		data: data,
 	};
 }
+
+export function formatMirfakResponse(data) {
+	return {
+		code: 0,
+		response: data,
+	};
+}
+
+export function formatMirfakArrayResponse(arr) {
+	return {
+		code: 0,
+		response: {
+			list: arr,
+			paginator: {
+				sort: 'asc',
+				sort_type: undefined,
+				count: arr.length,
+				page_num: 1,
+				page: 1,
+				perpage: 100,
+			},
+		},
+	};
+}
