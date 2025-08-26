@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import handleCORSHeaders from './lib/handleCORSHeaders.js';
 
 /**
  * 稼動率資料
@@ -65,11 +66,7 @@ export default function handleChart(request) {
 
 	return new Response(JSON.stringify(result), {
 		status: 200,
-		headers: {
-			'Access-Control-Allow-Origin': '*',
-			'Access-Control-Allow-Methods': 'GET',
-			'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-		},
+		headers: handleCORSHeaders(request),
 	});
 
 	function generateRandomTime() {

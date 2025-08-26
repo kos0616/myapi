@@ -1,3 +1,4 @@
+import handleCORSHeaders from './lib/handleCORSHeaders.js';
 import dayjs from 'dayjs';
 
 /**
@@ -31,12 +32,5 @@ export default function handleChart(request) {
 		});
 	}
 
-	return new Response(JSON.stringify(data), {
-		status: 200,
-		headers: {
-			'Access-Control-Allow-Origin': '*',
-			'Access-Control-Allow-Methods': 'GET',
-			'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-		},
-	});
+	return new Response(JSON.stringify(data), { status: 200, headers: handleCORSHeaders(request) });
 }

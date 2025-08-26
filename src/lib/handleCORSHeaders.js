@@ -1,11 +1,15 @@
 export default function getCORSHeaders(request) {
 	const origin = request.headers.get('Origin');
+	console.log('Request Origin:', origin); // Debug: 記錄請求來源
 	// 只允許你的前端網域
 	const allowedOrigins = [
 		// 電池交換系統	'https://cycling-battery.pages.dev',
 		'http://ju-tai.vdr.tw', // 久泰精業
 		'http://localhost', // 本地測試
 		'http://localhost:5173', // 本地測試
+		'http://localhost:8080',
+		'http://192.168.0.11:8088', // 客戶端（修正埠號）
+		'http://192.168.1.113:5173', // 我的wifi本地端
 	];
 
 	const allowedOrigin = allowedOrigins.includes(origin) ? origin : null;
