@@ -1,6 +1,13 @@
-#MY API
+# MY API
+
+---
+
 https://chatter.idareyoutodo.workers.dev
 
-server is on cloudflare
+## NOTE
 
-NEWS_API_KEY is on cloudflare
+---
+
+The server is on cloudflare
+
+**NEWS_API_KEY** is on cloudflare sercret
