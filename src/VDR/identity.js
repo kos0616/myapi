@@ -1,4 +1,4 @@
-import handleCORSHeaders from './lib/handleCORSHeaders.js';
+import handleCORSHeaders from '../lib/handleCORSHeaders.js';
 
 export default async function handleIdentity(request, env) {
 	const { method, url } = request;
@@ -10,8 +10,9 @@ export default async function handleIdentity(request, env) {
 	// /api/identity/me
 	if (pathname === '/api/identity/me' && method === 'GET') return await handleGetMe(request);
 
-	if (pathname === '/api/identity/logout' && method === 'POST') return await handleLogout(request);
-	if (pathname === '/api/identity/login' && method === 'POST') return await handleLogin(request);
+	if (pathname === '/api/identity/logout' && method === 'POST') return await handleSuccess(request);
+	if (pathname === '/api/identity/login' && method === 'POST') return await handleSuccess(request);
+	if (pathname === '/api/identity/change-password' && method === 'POST') return await handleSuccess(request);
 }
 
 // 處理獲取當前用戶信息的請求
@@ -60,19 +61,9 @@ async function handleGetMe(request) {
 	return new Response(JSON.stringify(data), { status: 200, headers: handleCORSHeaders(request) });
 }
 
-async function handleLogout(request) {
+async function handleSuccess(request, message) {
 	// 處理登出請求
-	return new Response('Logout successful', {
-		status: 200,
-		headers: {
-			...handleCORSHeaders(request),
-			'Content-Type': 'application/json',
-		},
-	});
-}
-
-async function handleLogin(request) {
-	return new Response('Login successful', {
+	return new Response(message, {
 		status: 200,
 		headers: {
 			...handleCORSHeaders(request),

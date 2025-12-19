@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import handleCORSHeaders from './lib/handleCORSHeaders.js';
+import handleCORSHeaders from '../lib/handleCORSHeaders.js';
 
 /**
  * 稼動率資料

@@ -1,4 +1,4 @@
-import handleCORSHeaders from './lib/handleCORSHeaders.js';
+import handleCORSHeaders from '../lib/handleCORSHeaders.js';
 import dayjs from 'dayjs';
 
 /**
