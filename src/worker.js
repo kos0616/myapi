@@ -15,7 +15,7 @@ import handleChat from './chat.js';
 import handleApiResource from './apiResource.js';
 import handleMirfakApiResource from './mirfak.js';
 // VDR placeholder datas
-import { handleIdentity, handleRoles, handleChart, handleUptime } from './VDR/index.js';
+import { handleIdentity, handleRoles, handleChart, handleUptime, handlePermission, handleDevice } from './VDR/index.js';
 
 // 處理 OPTIONS 預檢請求
 function handlePreRequest(request) {
@@ -40,9 +40,6 @@ async function handleRequest(request, env) {
 	if (pathname === '/api/chat') return await handleChat(request, env);
 	/** 取得即時新聞 */
 	if (pathname === '/api/news' && method === 'GET') return await handleGetNews(request, env);
-	/** 取得假資料 數據趨勢圖 */
-	if (pathname === '/api/chart' && method === 'GET') return handleChart(request);
-	if (pathname === '/api/uptime' && method === 'GET') return handleUptime(request);
 
 	/** 取得user清單 */
 	// if (pathname === '/api/user') return await handleUser(request, env);
@@ -50,6 +47,11 @@ async function handleRequest(request, env) {
 	// 處理VDR基本身份驗證相關請求
 	if (pathname.startsWith('/api/identity')) return await handleIdentity(request, env);
 	if (pathname.startsWith('/api/roles')) return await handleRoles(request, env);
+	if (pathname.startsWith('/api/devices')) return await handleDevice(request, env);
+	/** 取得假資料 數據趨勢圖 */
+	if (pathname === '/api/permissions') return handlePermission(request);
+	if (pathname === '/api/chart' && method === 'GET') return handleChart(request);
+	if (pathname === '/api/uptime' && method === 'GET') return handleUptime(request);
 
 	if (pathname.startsWith('/mirfakapi/')) {
 		/** 自由編輯表單- 麥爾法 */

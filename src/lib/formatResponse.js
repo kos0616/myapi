@@ -1,7 +1,7 @@
 export function formatArrayResponse(arr) {
 	return {
 		success: true,
-		message: 'Array Data retrieved successfully',
+		message: 'Array Data retrieved successfully by Auto generatoring API',
 		data: arr,
 		page: 1,
 		pageSize: 100,
