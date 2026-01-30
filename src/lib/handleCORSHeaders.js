@@ -9,7 +9,7 @@ export default function getCORSHeaders(request) {
 		'http://192.168.0.11:8088', // 客戶端（修正埠號）
 		'http://192.168.1.113:5173', // 我的wifi本地端
 		'https://factory-demo.pages.dev',
-		'https://jutai.idareyoutodo.workers.dev'
+		'https://jutai.pages.dev'
 	];
 
 	const allowedOrigin = allowedOrigins.includes(origin) ? origin : null;
