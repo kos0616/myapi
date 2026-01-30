@@ -392,7 +392,7 @@
 			},
 			{
 				"name": "蜂鳴器",
-				"type": "狀態",
+				"type": "異常",
 				"dataType": "bool",
 				"description": "蜂鳴器",
 				"unit": "",
@@ -2316,7 +2316,7 @@
 			},
 			{
 				"name": "SCR-1 溫度過高",
-				"type": "狀態",
+				"type": "異常",
 				"dataType": "bool",
 				"description": "SCR-1 溫度過高",
 				"unit": "",
@@ -2325,7 +2325,7 @@
 			},
 			{
 				"name": "熔接變壓器-1 溫度過高",
-				"type": "狀態",
+				"type": "異常",
 				"dataType": "bool",
 				"description": "熔接變壓器-1 溫度過高",
 				"unit": "",
@@ -2352,7 +2352,7 @@
 			},
 			{
 				"name": "SCR-2 溫度過高",
-				"type": "狀態",
+				"type": "異常",
 				"dataType": "bool",
 				"description": "SCR-2 溫度過高",
 				"unit": "",
@@ -2361,7 +2361,7 @@
 			},
 			{
 				"name": "熔接變壓器-2 溫度過高",
-				"type": "狀態",
+				"type": "異常",
 				"dataType": "bool",
 				"description": "熔接變壓器-2 溫度過高",
 				"unit": "",
