@@ -1,5 +1,10 @@
 import handleCORSHeaders from '../lib/handleCORSHeaders.js';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc.js';
+import timezone from 'dayjs/plugin/timezone.js';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 /**
  * 數據趨勢圖測試資料
@@ -14,8 +19,8 @@ export default function handleChart(request) {
 
 	const ids = ['01', '02', '03', '04', '05']; // IDs to choose from
 	const data = [];
-	const startDate = start ? dayjs(start).startOf('day').toDate() : dayjs().startOf('month').toDate();
-	const endDate = end ? dayjs(end).endOf('day').toDate() : dayjs().endOf('month').toDate();
+	const startDate = start ? dayjs.tz(start, 'Asia/Taipei').startOf('day').toDate() : dayjs().startOf('month').toDate();
+	const endDate = end ? dayjs.tz(end, 'Asia/Taipei').endOf('day').toDate() : dayjs().endOf('month').toDate();
 	const generateId = () => Number(`${Date.now()}${Math.floor(Math.random() * 10000)}`);
 
 	for (let i = 0; i < count; i++) {
