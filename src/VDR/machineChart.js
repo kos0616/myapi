@@ -14,8 +14,8 @@ export default function handleChart(request) {
 
 	const ids = ['01', '02', '03', '04', '05']; // IDs to choose from
 	const data = [];
-	const startDate = start ? new Date(start) : dayjs().startOf('month').toDate();
-	const endDate = end ? new Date(end) : dayjs().endOf('month').toDate();
+	const startDate = start ? dayjs(start).startOf('day').toDate() : dayjs().startOf('month').toDate();
+	const endDate = end ? dayjs(end).endOf('day').toDate() : dayjs().endOf('month').toDate();
 	const generateId = () => Number(`${Date.now()}${Math.floor(Math.random() * 10000)}`);
 
 	for (let i = 0; i < count; i++) {
