@@ -1649,7 +1649,7 @@
 		"name": "點焊6",
 		"no": null,
 		"type": "點焊",
-		"plant": "A廠區",
+		"plant": "C廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -1912,7 +1912,7 @@
 		"name": "點焊7",
 		"no": null,
 		"type": "點焊",
-		"plant": "A廠區",
+		"plant": "B廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -2175,7 +2175,7 @@
 		"name": "支架2",
 		"no": "K02",
 		"type": "支架",
-		"plant": "A廠區",
+		"plant": "C廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -2438,7 +2438,7 @@
 		"name": "裁剪機1",
 		"no": null,
 		"type": "裁剪機",
-		"plant": "A廠區",
+		"plant": "B廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -2494,7 +2494,7 @@
 		"name": "裁剪機2",
 		"no": null,
 		"type": "裁剪機",
-		"plant": "A廠區",
+		"plant": "B廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -2550,7 +2550,7 @@
 		"name": "直線機1",
 		"no": "S01",
 		"type": "直線機",
-		"plant": "A廠區",
+		"plant": "B廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -2723,7 +2723,7 @@
 		"name": "直線機2",
 		"no": "S02",
 		"type": "直線機",
-		"plant": "A廠區",
+		"plant": "C廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -2896,7 +2896,7 @@
 		"name": "直線機3",
 		"no": "S03",
 		"type": "直線機",
-		"plant": "A廠區",
+		"plant": "C廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -3069,7 +3069,7 @@
 		"name": "直線機4",
 		"no": "S04",
 		"type": "直線機",
-		"plant": "A廠區",
+		"plant": "C廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -3242,7 +3242,7 @@
 		"name": "直線機5",
 		"no": "S05",
 		"type": "直線機",
-		"plant": "A廠區",
+		"plant": "B廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -3415,7 +3415,7 @@
 		"name": "直線機6",
 		"no": "S06",
 		"type": "直線機",
-		"plant": "A廠區",
+		"plant": "B廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -3588,7 +3588,7 @@
 		"name": "直線機7",
 		"no": "S07",
 		"type": "直線機",
-		"plant": "A廠區",
+		"plant": "B廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -3761,7 +3761,7 @@
 		"name": "直線機8",
 		"no": "S08",
 		"type": "直線機",
-		"plant": "A廠區",
+		"plant": "B廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -3934,7 +3934,7 @@
 		"name": "直線機9",
 		"no": "S09",
 		"type": "直線機",
-		"plant": "A廠區",
+		"plant": "B廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -4107,7 +4107,7 @@
 		"name": "伸線機1",
 		"no": "D01",
 		"type": "伸線機",
-		"plant": "A廠區",
+		"plant": "B廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -4244,7 +4244,7 @@
 		"name": "伸線機2",
 		"no": "D02",
 		"type": "伸線機",
-		"plant": "A廠區",
+		"plant": "B廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -4381,7 +4381,7 @@
 		"name": "伸線機3",
 		"no": "D03",
 		"type": "伸線機",
-		"plant": "A廠區",
+		"plant": "B廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -4518,7 +4518,7 @@
 		"name": "伸線機4",
 		"no": "D04",
 		"type": "伸線機",
-		"plant": "A廠區",
+		"plant": "C廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
@@ -4655,7 +4655,7 @@
 		"name": "伸線機5",
 		"no": "D05",
 		"type": "伸線機",
-		"plant": "A廠區",
+		"plant": "C廠區",
 		"description": "",
 		"createdAt": "2025-06-07T16:00:13.3466667",
 		"dataPoints": [
