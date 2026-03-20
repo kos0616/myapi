@@ -5,11 +5,13 @@ export default function getCORSHeaders(request) {
 	const allowedOrigins = [
 		'http://localhost', // 本地測試
 		'http://localhost:5173', // 本地測試
+		'http://127.0.0.1:5173',
 		'http://localhost:8080',
 		'http://192.168.0.11:8088', // 客戶端（修正埠號）
 		'http://192.168.1.113:5173', // 我的wifi本地端
 		'https://factory-demo.pages.dev',
-		'https://jutai.pages.dev'
+		'https://jutai.pages.dev',
+		'https://river-bar.pages.dev'
 	];
 
 	const allowedOrigin = allowedOrigins.includes(origin) ? origin : null;

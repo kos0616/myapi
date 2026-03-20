@@ -16,6 +16,7 @@ import handleApiResource from './apiResource.js';
 import handleMirfakApiResource from './mirfak.js';
 // VDR placeholder datas
 import { handleIdentity, handleRoles, handleChart, handleUptime, handlePermission, handleDevice } from './VDR/index.js';
+import handleRiverBarRequest, { isRiverBarPath } from './VDR_riverBar/index.js';
 
 // 處理 OPTIONS 預檢請求
 function handlePreRequest(request) {
@@ -43,6 +44,9 @@ async function handleRequest(request, env) {
 
 	/** 取得user清單 */
 	// if (pathname === '/api/user') return await handleUser(request, env);
+
+	/** river_bar_new demo mock API */
+	if (isRiverBarPath(pathname)) return await handleRiverBarRequest(request, env);
 
 	// 處理VDR基本身份驗證相關請求
 	if (pathname.startsWith('/api/identity')) return await handleIdentity(request, env);
